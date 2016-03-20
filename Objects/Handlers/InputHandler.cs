@@ -7,8 +7,8 @@ public class InputHandler {
 	private float timer;
 	private TouchPhase touchPhase;
 
-	private GameObject clickedTile = null;
-	private TopTile clickedTileObject = null;
+	public GameObject clickedTile;
+	public TopTile clickedTileObject;
 
 	// gets input data
 	public void check( Touch inTouch) {
@@ -63,7 +63,7 @@ public class InputHandler {
 		if (Physics.Raycast( Camera.main.ScreenPointToRay(tap.position), out hit)) {
 			if (hit.transform.tag == "Top") {
 				TopTile tempTile = (TopTile)TileHash.hash[hit.transform.gameObject];
-				if (!tempTile.selected) {
+				if (!tempTile.playerTeritory) {
 					clickedTile = hit.transform.gameObject;
 					clickedTileObject = (TopTile)TileHash.hash[hit.transform.gameObject];
 

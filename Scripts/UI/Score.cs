@@ -42,10 +42,10 @@ public class Score : MonoBehaviour {
 		if ( GamePhase.phase == GamePhase.phases.play) {
 			timer += Time.deltaTime;
 
-			if (timer > 1) {
-				scoreHandler.score += 5;
-				lastScore += 5;
-				timer -= 1f;
+			if (timer > 5f) {
+				scoreHandler.score += 1;
+				lastScore += 1;
+				timer -= 5f;
 			}
 		}
 	}

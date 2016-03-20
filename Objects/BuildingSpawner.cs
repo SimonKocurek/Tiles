@@ -4,7 +4,18 @@ public class BuildingSpawner{
 
 	public enum buildings { fort, house, watchTower, farm };
 
+	private ScoreHandler scoreHandler;
+	private InputHandler inputHandler;
+	private Material selectionMaterial;
+
+	public BuildingSpawner(ScoreHandler _scoreHandler, InputHandler _inputHandler, Material _selectionMaterial) {
+		scoreHandler = _scoreHandler;
+		inputHandler = _inputHandler;
+		selectionMaterial = _selectionMaterial;
+	}
+
 	public void spawn( buildings building) {
+		
 		switch (building) {
 			case buildings.fort:
 				spawnFort();
@@ -26,23 +37,26 @@ public class BuildingSpawner{
 
 	private void spawnFort() {
 		//ScriptableObject.Instantiate()
+		select(inputHandler.clickedTile, inputHandler.clickedTileObject);
 	}
 
 	private void spawnHouse() {
-
+		select(inputHandler.clickedTile, inputHandler.clickedTileObject);
 	}
 
 	private void spawnWatchTower() {
-
+		select(inputHandler.clickedTile, inputHandler.clickedTileObject);
 	}
 
 	private void spawnFarm() {
-
+		select(inputHandler.clickedTile, inputHandler.clickedTileObject);
 	}
 
 	// selects tile 
-	private void select( Material mat ) {
-		inputHandler.clickedTile.GetComponent<Renderer>().material = mat;
-		inputHandler.clickedTileObject.selected = true;
+	private void select( GameObject tileObject, TopTile tileData ) {
+		scoreHandler.score += 15;
+		tileData.playerTeritory = true;
+
+		tileObject.GetComponent<Renderer>().material = selectionMaterial;
 	}
 }
