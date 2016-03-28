@@ -4,10 +4,7 @@
 	private int lengthY;
 	private int id = 0;
 
-	private TopTile[,] tiles;
-
-	public IslandGenerator(TopTile[,] _tiles, int _lengthX, int _lengthY) {
-		tiles = _tiles;
+	public IslandGenerator(int _lengthX, int _lengthY) {
 		lengthX = _lengthX;
 		lengthY = _lengthY;
 	}
@@ -17,8 +14,8 @@
 		// go through each tile
 		for (int x = 0; x < lengthX; x++) {
 			for (int y = 0; y < lengthY; y++) {
-				if (validTile(tiles[x, y])) {
-					crawl(tiles[x, y], x, y);
+				if (validTile(TileData.tiles[x, y])) {
+					crawl(TileData.tiles[x, y], x, y);
 					id++;
 				}
 			}
@@ -40,7 +37,7 @@
 				for (int kernelX = x - offset; kernelX <= x+1; kernelX ++) {
 					if( kernelY >= 0 && kernelX >= 0 && kernelY < lengthY && kernelX < lengthX) {
 						
-						tile = tiles[kernelX, kernelY];
+						tile = TileData.tiles[kernelX, kernelY];
 						if (validTile( tile)) {
 							crawl( tile, kernelX, kernelY);
 						}
@@ -58,7 +55,7 @@
 				for (int kernelX = x-1 ; kernelX <= x + offset; kernelX ++) {
 					if( kernelY >= 0 && kernelX >= 0 && kernelY < lengthY && kernelX < lengthX) {
 						
-						tile = tiles[kernelX, kernelY];
+						tile = TileData.tiles[kernelX, kernelY];
 						if (validTile( tile)) {
 							crawl( tile, kernelX, kernelY);
 						}

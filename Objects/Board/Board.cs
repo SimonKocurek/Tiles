@@ -2,28 +2,22 @@
 
 public class Board {
 
-	// result
-	public Tile[,,] botTile;
-	public TopTile[,] topTile;
-
 	// dimensions
 	private static int lengthX;
 	private static int lengthY;
 
-	public Board(int tilesX, int tilesY, Vector3 size, int maxHeight, int smoothness) {
+	public Board(int tilesX, int tilesY) {
 		lengthX = tilesX;
 		lengthY = tilesY;
+	}
 
+	public void generate(Vector3 size, int maxHeight, int smoothness ) {
 		// get heightmap data
 		HeightMap heightMap = new HeightMap(lengthX, lengthY, maxHeight);
-		heightMap.smooth( smoothness);
+		heightMap.smooth(smoothness);
 
 		// map offset for centering
-		Vector3 start = new Vector3( -lengthX * size.x / 2, 0, -lengthY * size.y / 2);
-
-		// inicialize Tile arrays
-		botTile = new Tile[lengthX, lengthY, maxHeight];
-		topTile = new TopTile[lengthX, lengthY];
+		Vector3 start = new Vector3(-lengthX * size.x / 2, 0, -lengthY * size.y / 2);
 
 		// cache data of each tile
 		GameObject tileModel = Resources.Load("Tile") as GameObject;
@@ -31,24 +25,25 @@ public class Board {
 		GameObject parent = GameObject.Find("Tiles");
 		int waterHeightLevel = GameObject.Find("Water").GetComponent<WaterController>().waterHeightLevel;
 
-		for (int x = 0; x < lengthX; x ++) {
-			for (int y = 0; y < lengthY; y ++) {
+		for (int x = 0; x < lengthX; x++) {
+			for (int y = 0; y < lengthY; y++) {
 
 				// cache height
 				int height = heightMap.height[x, y];
 				int lowestNeighbour = heightMap.lowestNeighbour(x, y) + 1;
 
 				// exclude not visible tiles
-				if ( lowestNeighbour > height) {
+				if (lowestNeighbour > height) {
 					lowestNeighbour = height;
 				}
 
-				for (int z = lowestNeighbour; z <= height; z ++) {
+				for (int z = lowestNeighbour; z <= height; z++) {
 					// create tiles
 					if (z < height || z < waterHeightLevel) {
-						botTile[x,y,z] = new BotTile(new Vector3(start.x + x * size.x - (size.x / 2) * (y % 2), z * size.z, start.z + y * size.y), x, y, z, tileModel, parent, waterHeightLevel);
-					} else {
-						topTile[x,y] = new TopTile(new Vector3(start.x + x * size.x - (size.x / 2) * (y % 2), z * size.z, start.z + y * size.y), x, y, z, TopTileModel, parent);
+						BotTile botTile = new BotTile(new Vector3(start.x + x * size.x - (size.x / 2) * (y % 2), z * size.z, start.z + y * size.y), z, tileModel, parent, waterHeightLevel);
+					}
+					else {
+						TileData.tiles[x, y] = new TopTile(new Vector3(start.x + x * size.x - (size.x / 2) * (y % 2), z * size.z, start.z + y * size.y), z, TopTileModel, parent);
 					}
 				}
 

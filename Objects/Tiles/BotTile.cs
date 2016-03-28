@@ -2,7 +2,7 @@
 
 public class BotTile : Tile {
 
-	public BotTile( Vector3 _position, int _x, int _y, int _z, GameObject tileModel, GameObject parent, int waterHeightLevel ) : base(_position, _x, _y, _z, tileModel, parent) {
+	public BotTile( Vector3 _position, int _z, GameObject tileModel, GameObject parent, int waterHeightLevel ) : base(_position, _z, tileModel, parent) {
 
 		// set bot tile specific data
 		if (waterHeightLevel > z) {

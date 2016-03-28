@@ -36,20 +36,28 @@ public class BuildingSpawner{
 	}
 
 	private void spawnFort() {
-		//ScriptableObject.Instantiate()
-		select(inputHandler.clickedTile, inputHandler.clickedTileObject);
+		if (!inputHandler.clickedTileObject.playerTeritory) {
+			//ScriptableObject.Instantiate()
+			select(inputHandler.clickedTile, inputHandler.clickedTileObject);
+		}
 	}
 
 	private void spawnHouse() {
-		select(inputHandler.clickedTile, inputHandler.clickedTileObject);
+		if (!inputHandler.clickedTileObject.playerTeritory) {
+			select(inputHandler.clickedTile, inputHandler.clickedTileObject);
+		}
 	}
 
 	private void spawnWatchTower() {
-		select(inputHandler.clickedTile, inputHandler.clickedTileObject);
+		if (!inputHandler.clickedTileObject.playerTeritory) {
+			select(inputHandler.clickedTile, inputHandler.clickedTileObject);
+		}
 	}
 
 	private void spawnFarm() {
-		select(inputHandler.clickedTile, inputHandler.clickedTileObject);
+		if (!inputHandler.clickedTileObject.playerTeritory) {
+			select(inputHandler.clickedTile, inputHandler.clickedTileObject);
+		}
 	}
 
 	// selects tile 

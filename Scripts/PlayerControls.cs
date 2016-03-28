@@ -2,6 +2,8 @@
 
 public class PlayerControls : MonoBehaviour {
 
+	public int id;
+
 	public ScoreHandler scoreHandler;
 	private InputHandler inputHandler;
 	private BuildingSpawner spawner;
@@ -9,10 +11,12 @@ public class PlayerControls : MonoBehaviour {
 	private BuildingSpawner.buildings selectedBuilding;
 	
 	void Start() {
+		id = GamePhase.getPlayerId();
+
 		GamePhase.phase = GamePhase.phases.start;
 		scoreHandler = new ScoreHandler();
 		inputHandler = new InputHandler();
-		spawner = new BuildingSpawner( scoreHandler, inputHandler, Resources.Load("Tile/Materials/PlayerMat") as Material);
+		spawner = new BuildingSpawner(scoreHandler, inputHandler, Resources.Load("Tile/Materials/PlayerMat") as Material);
 
 		selectedBuilding = BuildingSpawner.buildings.house;
 	}

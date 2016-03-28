@@ -14,11 +14,14 @@ public class BoardController : MonoBehaviour {
 	
 	void Start () {
 		// get board data
-		TileHash.hash = new Hashtable();
-		Board board = new Board(tilesX, tilesY, tileSize, maxHeight, smoothness);
-		
+		TileData.hash = new Hashtable();
+		TileData.tiles = new TopTile[tilesX, tilesY];
+
+		Board board = new Board(tilesX, tilesY);
+		board.generate(tileSize, maxHeight, smoothness);
+
 		// index islands
-		IslandGenerator islandGenerator = new IslandGenerator(board.topTile, tilesX, tilesY);
+		IslandGenerator islandGenerator = new IslandGenerator(tilesX, tilesY);
 		islandGenerator.generate();
 	}
 }

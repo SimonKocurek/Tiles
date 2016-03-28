@@ -3,7 +3,6 @@
 public class InputHandler {
 
 	private bool moved;
-	private bool selected;
 	private float timer;
 	private TouchPhase touchPhase;
 
@@ -19,7 +18,7 @@ public class InputHandler {
 		switch (touchPhase) {
 			// inicial touch
 			case TouchPhase.Began:
-				selected = select(inTouch);
+				select(inTouch);
 				timer = 0f;
 				moved = false;
 				break;
@@ -62,10 +61,10 @@ public class InputHandler {
 		// raycast to object
 		if (Physics.Raycast( Camera.main.ScreenPointToRay(tap.position), out hit)) {
 			if (hit.transform.tag == "Top") {
-				TopTile tempTile = (TopTile)TileHash.hash[hit.transform.gameObject];
+				TopTile tempTile = (TopTile)TileData.hash[hit.transform.gameObject];
 				if (!tempTile.playerTeritory) {
 					clickedTile = hit.transform.gameObject;
-					clickedTileObject = (TopTile)TileHash.hash[hit.transform.gameObject];
+					clickedTileObject = (TopTile)TileData.hash[hit.transform.gameObject];
 
 					return true;
 				}		
