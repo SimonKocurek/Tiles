@@ -1,4 +1,5 @@
-﻿public class ScoreHandler {
+﻿// handles individual score for each player
+public class ScoreHandler {
 
 	public int score;
 

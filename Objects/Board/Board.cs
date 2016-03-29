@@ -43,7 +43,7 @@ public class Board {
 						BotTile botTile = new BotTile(new Vector3(start.x + x * size.x - (size.x / 2) * (y % 2), z * size.z, start.z + y * size.y), z, tileModel, parent, waterHeightLevel);
 					}
 					else {
-						TileData.tiles[x, y] = new TopTile(new Vector3(start.x + x * size.x - (size.x / 2) * (y % 2), z * size.z, start.z + y * size.y), z, TopTileModel, parent);
+						TopTile topTile = new TopTile(new Vector3(start.x + x * size.x - (size.x / 2) * (y % 2), z * size.z, start.z + y * size.y), x, y, z, TopTileModel, parent);
 					}
 				}
 

@@ -16,6 +16,8 @@ public class BoardController : MonoBehaviour {
 		// get board data
 		TileData.hash = new Hashtable();
 		TileData.tiles = new TopTile[tilesX, tilesY];
+		TileData.x = tilesX;
+		TileData.y = tilesY;
 
 		Board board = new Board(tilesX, tilesY);
 		board.generate(tileSize, maxHeight, smoothness);

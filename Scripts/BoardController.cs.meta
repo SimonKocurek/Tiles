@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 182ed28322a738d41a4017b5c5422e65
-timeCreated: 1457638525
+timeCreated: 1459259585
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -9,7 +9,7 @@ MonoImporter:
   - colliderMesh: {fileID: 4300000, guid: 48af67a14e43cb5468f5b916cf459680, type: 3}
   - topMat: {fileID: 2100000, guid: 22b283d0c3b460846851a114e7444c50, type: 2}
   - botMat: {fileID: 2100000, guid: 1cf65d122fbdbc5448cb238abbd6e30e, type: 2}
-  executionOrder: 0
+  executionOrder: 100
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

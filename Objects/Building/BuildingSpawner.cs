@@ -7,13 +7,19 @@ public class BuildingSpawner{
 	private ScoreHandler scoreHandler;
 	private InputHandler inputHandler;
 	private Material selectionMaterial;
+	private int id;
 
-	public BuildingSpawner(ScoreHandler _scoreHandler, InputHandler _inputHandler, Material _selectionMaterial) {
+	private static GameObject fortModel = Resources.Load("Fort") as GameObject;
+	private static GameObject towerModel = Resources.Load("Tower") as GameObject;
+
+	public BuildingSpawner(ScoreHandler _scoreHandler, InputHandler _inputHandler, Material _selectionMaterial, int _id) {
 		scoreHandler = _scoreHandler;
 		inputHandler = _inputHandler;
 		selectionMaterial = _selectionMaterial;
+		id = _id; 
 	}
 
+	// spawns building of input type
 	public void spawn( buildings building) {
 		
 		switch (building) {
@@ -36,35 +42,41 @@ public class BuildingSpawner{
 	}
 
 	private void spawnFort() {
-		if (!inputHandler.clickedTileObject.playerTeritory) {
-			//ScriptableObject.Instantiate()
-			select(inputHandler.clickedTile, inputHandler.clickedTileObject);
+		TopTile tile = (TopTile)TileData.hash[inputHandler.clickedTile];
+		if (tile.ownerId == -1) {
+			Fort fort = new Fort(tile.tileObject.transform.position, fortModel, tile.x, tile.y);
+			selectTeritory(fort);
 		}
 	}
 
 	private void spawnHouse() {
-		if (!inputHandler.clickedTileObject.playerTeritory) {
-			select(inputHandler.clickedTile, inputHandler.clickedTileObject);
+		TopTile tile = (TopTile)TileData.hash[inputHandler.clickedTile];
+		if (tile.ownerId == id) {
+			Tower tower = new Tower(tile.tileObject.transform.position, towerModel, tile.x, tile.y);
+			selectTeritory(tower);
 		}
 	}
 
 	private void spawnWatchTower() {
-		if (!inputHandler.clickedTileObject.playerTeritory) {
-			select(inputHandler.clickedTile, inputHandler.clickedTileObject);
-		}
+		// TODO move house function insides here once you start implementing the rest of the buildings
 	}
 
 	private void spawnFarm() {
-		if (!inputHandler.clickedTileObject.playerTeritory) {
-			select(inputHandler.clickedTile, inputHandler.clickedTileObject);
+		
+	}
+
+	// selects all tiles belonging to building
+	private void selectTeritory(Building building) {
+		for (int i = 0; i < building.ownedCount; i ++) {
+			select(building.ownedTiles[i]);
 		}
 	}
 
 	// selects tile 
-	private void select( GameObject tileObject, TopTile tileData ) {
+	private void select(TopTile tileData ) {
 		scoreHandler.score += 15;
-		tileData.playerTeritory = true;
+		tileData.ownerId = id;
 
-		tileObject.GetComponent<Renderer>().material = selectionMaterial;
+		tileData.tileObject.GetComponent<Renderer>().material = selectionMaterial;
 	}
 }

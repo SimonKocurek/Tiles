@@ -13,6 +13,7 @@ public class FPS : MonoBehaviour {
 	void Update () {
 		fps = 1f / Time.smoothDeltaTime;
 
+		// colors UI if framerate drops too low
 		if (fps < 15) {
 			counter.color = Color.red;
 		} else {

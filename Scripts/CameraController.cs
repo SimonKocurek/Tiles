@@ -10,8 +10,6 @@ public class CameraController : MonoBehaviour {
 	private static Vector3 nextPosition;
 
 	private static float elevation = 6f;
-	private static float cameraHeight;
-
 
 	void Start () {
 		// get data about tiles and board

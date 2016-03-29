@@ -11,12 +11,13 @@ public class PlayerControls : MonoBehaviour {
 	private BuildingSpawner.buildings selectedBuilding;
 	
 	void Start() {
+		// assigns unique id to each player instance
 		id = GamePhase.getPlayerId();
 
 		GamePhase.phase = GamePhase.phases.start;
 		scoreHandler = new ScoreHandler();
 		inputHandler = new InputHandler();
-		spawner = new BuildingSpawner(scoreHandler, inputHandler, Resources.Load("Tile/Materials/PlayerMat") as Material);
+		spawner = new BuildingSpawner(scoreHandler, inputHandler, Resources.Load("Tile/Materials/PlayerMat") as Material, id);
 
 		selectedBuilding = BuildingSpawner.buildings.house;
 	}
