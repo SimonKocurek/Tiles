@@ -17,7 +17,7 @@ public class InputHandler {
 
 		switch (touchPhase) {
 			// inicial touch
-			case TouchPhase.Began:
+			case TouchPhase.Began:			
 				selected = select(inTouch);
 				timer = 0f;
 				moved = false;
@@ -47,7 +47,7 @@ public class InputHandler {
 		if (timer > 0.3f) {
 			if (!moved) {
 				moved = true;
-				return selected;
+				return true;
 			}
 		} 
 

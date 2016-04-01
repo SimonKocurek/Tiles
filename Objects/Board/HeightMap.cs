@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class HeightMap {
+﻿public class HeightMap {
 
 	// result
 	public int[,] height;
@@ -17,7 +15,7 @@ public class HeightMap {
 		height = new int[lengthX, lengthY] ;
 		for (int x = 0; x < lengthX; x ++) {
 			for (int y = 0; y < lengthY; y ++) {
-				height[x,y] = Random.Range(1, maxHeight);
+				height[x,y] = UnityEngine.Random.Range(1, maxHeight);
 			}
 		}
 	}

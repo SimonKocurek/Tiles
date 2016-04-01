@@ -9,6 +9,6 @@ public class Tower : Building {
 		//tileObject.transform.SetParent(parent.transform);
 		//TileData.hash.Add(tileObject, this);
 
-		select(2);
+		select(3);
 	}
 }

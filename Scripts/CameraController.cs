@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour {
 	private void heightChange() {
 		RaycastHit hit;
 
-		if (Physics.Raycast( new Vector3 (transform.position.x + 17f, transform.position.y, transform.position.z), -Vector3.up, out hit)) {
+		if (Physics.Raycast( new Vector3 (transform.position.x, transform.position.y, transform.position.z), -Vector3.up, out hit)) {
 			nextPosition.y = hit.point.y + elevation;
 		}
 	}

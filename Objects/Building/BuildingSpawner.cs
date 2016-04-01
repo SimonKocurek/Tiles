@@ -21,7 +21,6 @@ public class BuildingSpawner{
 
 	// spawns building of input type
 	public void spawn( buildings building) {
-		
 		switch (building) {
 			case buildings.fort:
 				spawnFort();

@@ -12,7 +12,6 @@ public class PlayerControls : MonoBehaviour {
 	
 	void Start() {
 		// assigns unique id to each player instance
-		id = GamePhase.getPlayerId();
 
 		GamePhase.phase = GamePhase.phases.start;
 		scoreHandler = new ScoreHandler();

@@ -9,6 +9,6 @@ public class Fort : Building {
 		//tileObject.transform.SetParent(parent.transform);
 		//TileData.hash.Add(tileObject, this);
 
-		select(5);
+		select(4);
 	}
 }
